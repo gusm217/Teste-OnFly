@@ -15,14 +15,14 @@ module.exports = (sequelize) => {
         isEmail: true,
       },
     },
-    senha: {
+    password: {
       type: Sequelize.STRING,
       allowNull: false,
       validate: {
         len: [8, 255],
       },
     },
-    nome: {
+    name: {
       type: Sequelize.STRING,
       allowNull: false,
       validate: {
@@ -32,9 +32,9 @@ module.exports = (sequelize) => {
   });
 
   Usuario.associate = (models) => {
-    Usuario.hasMany(models.Despesa, {
-      foreignKey: 'usuarioId',
-      as: 'despesas',
+    Usuario.hasMany(models.Despesas, {
+      foreignKey: 'userId',
+      as: 'despesa',
     });
   };
 
