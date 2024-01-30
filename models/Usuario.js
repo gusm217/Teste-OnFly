@@ -32,9 +32,9 @@ module.exports = (sequelize) => {
   });
 
   Usuario.associate = (models) => {
-    Usuario.hasMany(models.Despesas, {
+    Usuario.hasMany(models.Despesa, {
       foreignKey: 'userId',
-      as: 'despesa',
+      as: 'despesas',
     });
   };
 
