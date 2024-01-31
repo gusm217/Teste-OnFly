@@ -20,32 +20,32 @@ class ExpensesService {
 	}
 
 	async read(userId) {
-		const despesas = await Despesa.findAll({ where: { userId } });
+		const expenses = await Despesa.findAll({ where: { userId } });
 
-    if (!despesas.length) {
+    if (!expenses.length) {
       throw new Error('Nenhuma despesa encontrada');
     }
 
-    return despesas;
+    return expenses;
 	}
 
 	async update(id, dadosAtualizados) {
-    const despesa = await Despesa.findByPk(id);
+    const expense = await Despesa.findByPk(id);
 
-    if (!despesa) {
+    if (!expense) {
       throw new Error('Despesa não encontrada');
     }
 
     await Despesa.update(dadosAtualizados, { where: { id } });
 
-    const despesaAtualizada = await Despesa.findByPk(id);
-    return despesaAtualizada;
+    const updatedExpense = await Despesa.findByPk(id);
+    return updatedExpense;
   }
 
 	async delete(id) {
-		const despesa = await Despesa.findByPk(id);
+		const expense = await Despesa.findByPk(id);
 
-		if(!despesa) {
+		if(!expense) {
 			throw new Error('Despesa não encontrada');
 		}
 

@@ -1,11 +1,11 @@
 const request = require('supertest');
 const express = require('express');
 const bodyParser = require('body-parser');
-const DespesasController = require('../src/api/controllers/DespesasController');
-const DespesasService = require('../src/services/DespesasService');
-const despesasSchema = require('../src/api/schemas/despesasSchema');
+const ExpensesController = require('../src/api/controllers/ExpensesController');
+const ExpensesService = require('../src/services/ExpensesService');
+const expensesSchema = require('../src/api/schemas/expensesSchema');
 
-jest.mock('../src/services/DespesasService', () => {
+jest.mock('../src/services/ExpensesService', () => {
 	return {
     create: jest.fn(),
     read: jest.fn(),
@@ -13,74 +13,74 @@ jest.mock('../src/services/DespesasService', () => {
     delete: jest.fn()
   };
 });
-jest.mock('../src/api/schemas/despesasSchema');
+jest.mock('../src/api/schemas/expensesSchema');
 
 const app = express();
 app.use(bodyParser.json());
 
-const despesasController = new DespesasController();
-app.post('/despesas', despesasController.create);
+const expensesController = new ExpensesController();
+app.post('/expenses', expensesController.create);
 
-describe.only('DespesasController', () => {
+describe.only('ExpensesController', () => {
 	describe('create', () => {
 		it('should create a new expense with valid data', async () => {
-			const despesaData = { descricao: 'Compra', valor: 100, data: '2021-01-01', userId: 1 };
-			DespesasService.create.mockResolvedValue(despesaData);
-			despesasSchema.validate.mockReturnValue({ value: despesaData, error: null });
+			const expenseData = { descricao: 'Compra', valor: 100, data: '2021-01-01', userId: 1 };
+			ExpensesService.create.mockResolvedValue(expenseData);
+			expensesSchema.validate.mockReturnValue({ value: expenseData, error: null });
 
 			const response = await request(app)
-				.post('/despesas')
-				.send(despesaData);
+				.post('/expenses')
+				.send(expenseData);
 
 			expect(response.statusCode).toBe(201);
-			expect(response.body).toEqual(despesaData);
+			expect(response.body).toEqual(expenseData);
 		});
 	});
 
 	describe('read', () => {
 		it('should return expenses from a specific user', async () => {
 			const userId = 1;
-			const despesasMock = [
+			const expensesMock = [
 				{ descricao: 'Compra', valor: 100, data: '2021-01-01', userId },
 				{ descricao: 'Outra compra', valor: 200, data: '2021-01-02', userId }
 			];
 
-			DespesasService.read.mockResolvedValue(despesasMock);
+			ExpensesService.read.mockResolvedValue(expensesMock);
 
 			const response = await request(app)
-				.get(`/despesas/${userId}`);
+				.get(`/expenses/${userId}`);
 
 			expect(response.statusCode).toBe(200);
-			expect(response.body).toEqual(despesasMock);
+			expect(response.body).toEqual(expensesMock);
 		});
 	});
 
 	describe('update', () => {
 		it('should update an existing expense', async () => {
-			const despesaId = 1;
-			const dadosAtualizados = { descricao: 'Compra atualizada', valor: 150 };
-			const despesaAtualizada = { ...dadosAtualizados, id: despesaId };
+			const expenseId = 1;
+			const updatedData = { descricao: 'Compra atualizada', valor: 150 };
+			const updatedExpense = { ...updatedData, id: expenseId };
 
-			DespesasService.update.mockResolvedValue(despesaAtualizada);
-			despesasSchema.validate.mockReturnValue({ value: dadosAtualizados, error: null });
+			ExpensesService.update.mockResolvedValue(updatedExpense);
+			expensesSchema.validate.mockReturnValue({ value: updatedData, error: null });
 
 			const response = await request(app)
-				.put(`/despesas/${despesaId}`)
-				.send(dadosAtualizados);
+				.put(`/expenses/${expenseId}`)
+				.send(updatedData);
 
 			expect(response.statusCode).toBe(200);
-			expect(response.body).toEqual(despesaAtualizada);
+			expect(response.body).toEqual(updatedExpense);
 		});
 	});
 
 	describe('delete', () => {
 		it('should delete an existing expense', async () => {
-			const despesaId = 1;
+			const expenseId = 1;
 
-			DespesasService.delete.mockResolvedValue();
+			ExpensesService.delete.mockResolvedValue();
 
 			const response = await request(app)
-				.delete(`/despesas/${despesaId}`);
+				.delete(`/expenses/${expenseId}`);
 
 			expect(response.statusCode).toBe(204);
 			expect(response.body).toEqual({});

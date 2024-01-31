@@ -1,6 +1,6 @@
 const Joi = require('joi');
 
-const despesasSchema = Joi.object({
+const expensesSchema = Joi.object({
   descricao: Joi.string().min(1).max(191).required(),
   valor: Joi.number().positive().required(),
   data: Joi.date().max('now').message({
@@ -8,4 +8,4 @@ const despesasSchema = Joi.object({
 	}).required(),
 });
 
-module.exports = despesasSchema;
+module.exports = expensesSchema;

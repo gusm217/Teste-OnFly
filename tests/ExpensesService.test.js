@@ -1,4 +1,4 @@
-const DespesasService = require('../src/services/DespesasService');
+const ExpensesService = require('../src/services/ExpensesService');
 const Despesa = require('../models/Despesa');
 const sendEmail = require('../utils/mailer');
 
@@ -22,21 +22,21 @@ jest.mock('nodemailer', () => ({
   }),
 }));
 
-describe('DespesasService', () => {
-  let despesasService;
+describe('ExpensesService', () => {
+  let expensesService;
   beforeEach(() => {
-    despesasService = new DespesasService();
+    expensesService = new ExpensesService();
   });
 
   describe('create', () => {
     it('should create a new expense with valid data', async () => {
-      const despesaData = { descricao: 'Compra de material',data: '2021-01-01',  valor: 100, userId: 1};
-      Despesa.create.mockResolvedValue(despesaData);
+      const expenseData = { descricao: 'Compra de material',data: '2021-01-01',  valor: 100, userId: 1};
+      Despesa.create.mockResolvedValue(expenseData);
 
-      const novaDespesa = await despesasService.create(despesaData);
+      const newExpense = await expensesService.create(expenseData);
 
-      expect(Despesa.create).toHaveBeenCalledWith(despesaData);
-      expect(novaDespesa).toEqual(despesaData);
+      expect(Despesa.create).toHaveBeenCalledWith(expenseData);
+      expect(newExpense).toEqual(expenseData);
     });
 
 		it('should verify if email is sent to user when new expense is created', async () => {
@@ -57,17 +57,17 @@ describe('DespesasService', () => {
 	describe('read', () => {
 		it('should return all expenses from requested user', async () => {
 			const userId = 1;
-      const despesasEsperadas = [
+      const expectedExpenses = [
         { id: 1, descricao: 'Compra de material', valor: 100, userId },
         { id: 2, descricao: 'Compra de equipamentos', valor: 200, userId }
       ];
 
-      Despesa.findAll.mockResolvedValue(despesasEsperadas);
+      Despesa.findAll.mockResolvedValue(expectedExpenses);
 
-      const despesas = await despesasService.read(userId);
+      const expenses = await expensesService.read(userId);
 
       expect(Despesa.findAll).toHaveBeenCalledWith({ where: { userId } });
-      expect(despesas).toEqual(despesasEsperadas);
+      expect(expenses).toEqual(expectedExpenses);
     });
 
 		it('should return empty array when theres no expenses from requested user', async () => {
@@ -75,7 +75,7 @@ describe('DespesasService', () => {
 
       Despesa.findAll.mockResolvedValue([]);
 
-      await expect(despesasService.read(userId)).rejects.toThrow('Nenhuma despesa encontrada');
+      await expect(expensesService.read(userId)).rejects.toThrow('Nenhuma despesa encontrada');
     });
 	})
 
@@ -90,7 +90,7 @@ describe('DespesasService', () => {
       Despesa.update.mockResolvedValue([1]);
       Despesa.findByPk.mockResolvedValueOnce(updatedData);
 
-      const resultado = await despesasService.update(expenseId, newData);
+      const resultado = await expensesService.update(expenseId, newData);
 
       expect(Despesa.update).toHaveBeenCalledWith(newData, { where: { id: expenseId } });
       expect(resultado).toEqual(updatedData);
@@ -102,7 +102,7 @@ describe('DespesasService', () => {
 
 			Despesa.findByPk.mockResolvedValue(null);
 
-			await expect(despesasService.update(expenseId, updatedData)).rejects.toThrow('Despesa não encontrada');
+			await expect(expensesService.update(expenseId, updatedData)).rejects.toThrow('Despesa não encontrada');
 		});
 	});
 
@@ -112,7 +112,7 @@ describe('DespesasService', () => {
       Despesa.findByPk.mockResolvedValue({ id: expenseId, descricao: 'Compra de material', valor: 100 });
       Despesa.destroy.mockResolvedValue(1);
 
-      await despesasService.delete(expenseId);
+      await expensesService.delete(expenseId);
 
       expect(Despesa.destroy).toHaveBeenCalledWith({ where: { id: expenseId } });
 		})
@@ -121,7 +121,7 @@ describe('DespesasService', () => {
 			const expenseId = 999;
 			Despesa.findByPk.mockResolvedValue(null);
 
-			await expect(despesasService.delete(expenseId)).rejects.toThrow('Despesa não encontrada');
+			await expect(expensesService.delete(expenseId)).rejects.toThrow('Despesa não encontrada');
 		});
 	})
 })

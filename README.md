@@ -38,7 +38,7 @@ Antes de rodar o projeto, é necessário configurar algumas variáveis de ambien
    git clone [url-do-repositório]
 
 2. cd [nome-do-projeto]
-   
+
 3. npm install
 
 4. <br> DB_HOST=[seu_host_do_banco_de_dados]
@@ -58,12 +58,12 @@ Para rodar os testes, utilize o comando:
 npm test
 
 ### Rotas da API
-<br> POST /usuarios/register: Registra um novo usuário
+<br> POST /users/register: Registra um novo usuário
 <br> POST /login: Autentica um usuário
-<br> POST /despesas: Cria uma nova despesa
-<br> GET /despesas/:userId: Obtém despesas de um usuário específico
-<br> PUT /despesas/:id: Atualiza uma despesa
-<br> DELETE /despesas/:id: Deleta uma despesa
+<br> POST /expenses: Cria uma nova despesa
+<br> GET /expenses/:userId: Obtém despesas de um usuário específico
+<br> PUT /expenses/:id: Atualiza uma despesa
+<br> DELETE /expenses/:id: Deleta uma despesa
 
 <br>
 Obrigado!
