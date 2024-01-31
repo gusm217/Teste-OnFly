@@ -41,8 +41,7 @@ Antes de rodar o projeto, é necessário configurar algumas variáveis de ambien
    
 3. npm install
 
-4. 
-DB_HOST=[seu_host_do_banco_de_dados]
+4. DB_HOST=[seu_host_do_banco_de_dados]
 DB_USER=[seu_usuário_do_banco_de_dados]
 DB_PASS=[sua_senha_do_banco_de_dados]
 JWT_SECRET=[seu_segredo_jwt]
