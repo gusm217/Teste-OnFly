@@ -6,7 +6,9 @@ const UserService = require('../src/services/UserService');
 const userSchema = require('../src/api/schemas/userSchema');
 
 jest.mock('../src/services/UserService', () => {
-
+	return {
+		register: jest.fn()
+	}
 });
 jest.mock('../src/api/schemas/userSchema');
 
