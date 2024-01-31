@@ -1,6 +1,7 @@
 const Usuario = require('../../models/Usuario');
-const isValidEmail = require('../helpers/emailValidator')
+const emailValidator = require('../helpers/emailValidator')
 
+const isValidEmail = emailValidator.isValidEmail;
 class UserService {
   async register(nome, email, senha) {
 		if(!nome) {
