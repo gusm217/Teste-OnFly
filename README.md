@@ -51,12 +51,12 @@ Antes de rodar o projeto, é necessário configurar algumas variáveis de ambien
 
 6. npm start
 
-Testes
+### Testes
 Para rodar os testes, utilize o comando:
 
 npm test
 
-Rotas da API
+### Rotas da API
 POST /usuarios/register: Registra um novo usuário
 POST /login: Autentica um usuário
 POST /despesas: Cria uma nova despesa
@@ -64,4 +64,5 @@ GET /despesas/:userId: Obtém despesas de um usuário específico
 PUT /despesas/:id: Atualiza uma despesa
 DELETE /despesas/:id: Deleta uma despesa
 
+<br>
 Obrigado!
