@@ -6,15 +6,14 @@ class ExpensesService {
   async create(data) {
 		const newExpense = await Despesa.create(data);
 
-		const user = await Usuario.findOne({ where: { id: newExpense.userId } });
-    if (user) {
-      await sendEmail({
-        from: process.env.MEU_EMAIL,
-        to: user.email,
-        subject: 'Despesa Cadastrada',
-        text: `Uma nova despesa foi cadastrada: ${data.descricao}`
-      });
-    }
+		const user = await Usuario.findByPk(newExpense.userId);
+
+		await sendEmail({
+			from: process.env.MEU_EMAIL,
+			to: user.email,
+			subject: 'Despesa Cadastrada',
+			text: `Uma nova despesa foi cadastrada: ${data.descricao}`
+  	});
 
 		return newExpense;
 	}
