@@ -2,7 +2,7 @@ const DespesasService = require('../../services/DespesasService');
 const despesasService = new DespesasService();
 const despesasSchema = require('../schemas/despesasSchema');
 
-class DespesasController {
+class ExpensesController {
   async create(req, res) {
     try {
       const { value, error } = despesasSchema.validate(req.body);
@@ -54,4 +54,4 @@ class DespesasController {
   }
 }
 
-module.exports = DespesasController;
+module.exports = ExpensesController;

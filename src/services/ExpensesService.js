@@ -2,7 +2,7 @@ const Despesa = require('../../models/Despesa');
 const Usuario = require('../../models/Usuario');
 const sendEmail = require('../../utils/mailer');
 
-class DespesasService {
+class ExpensesService {
   async create(data) {
 		const newExpense = await Despesa.create(data);
 
@@ -53,4 +53,4 @@ class DespesasService {
 	}
 }
 
-module.exports = DespesasService;
+module.exports = ExpensesService;
