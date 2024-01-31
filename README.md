@@ -41,11 +41,11 @@ Antes de rodar o projeto, é necessário configurar algumas variáveis de ambien
    
 3. npm install
 
-4. DB_HOST=[seu_host_do_banco_de_dados]
-DB_USER=[seu_usuário_do_banco_de_dados]
-DB_PASS=[sua_senha_do_banco_de_dados]
-JWT_SECRET=[seu_segredo_jwt]
-MEU_EMAIL=[seu_email_para_enviar_emails]
+4. \n DB_HOST=[seu_host_do_banco_de_dados]
+\n DB_USER=[seu_usuário_do_banco_de_dados]
+\n DB_PASS=[sua_senha_do_banco_de_dados]
+\n JWT_SECRET=[seu_segredo_jwt]
+\n MEU_EMAIL=[seu_email_para_enviar_emails]
 
 5. npx sequelize db:migrate
 
