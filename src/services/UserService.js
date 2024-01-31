@@ -1,10 +1,8 @@
 const Usuario = require('../../models/Usuario');
+const isValidEmail = require('../helpers/emailValidator')
 
 class UserService {
   async register(nome, email, senha) {
-		const regexEmail = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-		const isValidEmail = (email) => regexEmail.test(email);
-
 		if(!nome) {
 			throw new Error('Nome é obrigatório!')
 		}
