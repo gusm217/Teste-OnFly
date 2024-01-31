@@ -42,14 +42,15 @@ Antes de rodar o projeto, é necessário configurar algumas variáveis de ambien
 3. npm install
 
 4. <br> DB_HOST=[seu_host_do_banco_de_dados]
-<br> DB_USER=[seu_usuário_do_banco_de_dados]
-<br> DB_PASS=[sua_senha_do_banco_de_dados]
+<br> DB_USERNAME=[seu_usuário_do_banco_de_dados]
+<br> DB_PASSWORD=[sua_senha_do_banco_de_dados]
 <br> JWT_SECRET=[seu_segredo_jwt]
 <br> MEU_EMAIL=[seu_email_para_enviar_emails]
+<br> MINHA_SENHA=[sua senha para acessar seu email]
 
-5. npx sequelize db:migrate
+6. npx sequelize db:migrate
 
-6. npm start
+7. npm start
 
 ### Testes
 Para rodar os testes, utilize o comando:
@@ -57,12 +58,12 @@ Para rodar os testes, utilize o comando:
 npm test
 
 ### Rotas da API
-POST /usuarios/register: Registra um novo usuário
-POST /login: Autentica um usuário
-POST /despesas: Cria uma nova despesa
-GET /despesas/:userId: Obtém despesas de um usuário específico
-PUT /despesas/:id: Atualiza uma despesa
-DELETE /despesas/:id: Deleta uma despesa
+<br> POST /usuarios/register: Registra um novo usuário
+<br> POST /login: Autentica um usuário
+<br> POST /despesas: Cria uma nova despesa
+<br> GET /despesas/:userId: Obtém despesas de um usuário específico
+<br> PUT /despesas/:id: Atualiza uma despesa
+<br> DELETE /despesas/:id: Deleta uma despesa
 
 <br>
 Obrigado!
